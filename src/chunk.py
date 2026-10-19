@@ -14,7 +14,7 @@ TABLE_RECORDS = PARSED / "table_records.json"
 CHUNKS = PARSED / "chunks.jsonl"
 
 # ---- settings ----------------------------------------------------------------
-CHUNK_SIZE = 250                                   # characters
+CHUNK_SIZE = 250                                   
 SEPARATORS = ["\n\n", "\n", ".", "?", "!", " ", ""]
 MAX_EMBED_CHARS = 2000                             # rough ceiling for a 512-token embedding model
 
@@ -26,8 +26,8 @@ TEXT_LABELS = {
 
 splitter = RecursiveCharacterTextSplitter(
     chunk_size=CHUNK_SIZE, chunk_overlap=0, separators=SEPARATORS,
-    keep_separator="end",                          # remove this argument if your version rejects it
-    add_start_index=True,                          # moved here from create_documents
+    keep_separator="end",                          
+    add_start_index=True,                          
 )
 
 
@@ -91,7 +91,7 @@ def text_chunks(sections: list) -> list:
         for text, page in s["paragraphs"]:
             starts.append((pos, page))
             parts.append(text)
-            pos += len(text) + 2                   # the "\n\n" joiner
+            pos += len(text) + 2
         body = "\n\n".join(parts)
 
         for piece in splitter.create_documents([body]):
